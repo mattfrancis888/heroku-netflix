@@ -8,8 +8,9 @@
         "convert:build": "tsc -w",
         "convert:run": "nodemon backend-build/index.js",
         "convert": "concurrently npm:convert:*",
-        "start": " node backend-build/index.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node backend-build/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "postinstall": "npm run tsc"
     },
     "author": "",
     "license": "ISC",
