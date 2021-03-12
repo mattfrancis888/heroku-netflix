@@ -91,12 +91,12 @@ var refreshToken = function (req, res) { return __awaiter(void 0, void 0, void 0
                 // ]);
                 //Chrome's default settings for cookie is samesite=lax; to avoid CSRF attacks
                 //We should make it sameSite=Strict,
-                // res.cookie(ACCESS_TOKEN, token, {
-                //     secure: true, //needs secure tag when we have sameSite tag
-                //     sameSite: "strict",
-                // });
+                res.cookie(ACCESS_TOKEN, token, {
+                    secure: true,
+                    sameSite: "strict",
+                });
                 //For development, we remove secure because it's on http:
-                res.cookie(ACCESS_TOKEN, token);
+                // res.cookie(ACCESS_TOKEN, token);
                 res.send({
                     token: token,
                 });
@@ -169,20 +169,20 @@ var signIn = function (req, res) {
             //and http only; but POSTMAN will show your cookies
             //Chrome's default settings for cookie is samesite=Strict (to avoid CSRF attacks) and Secure
             //We should make it samesite=strict
-            // res.cookie(REFRESH_TOKEN, refreshToken, {
-            //     sameSite: "strict",
-            //     secure: true,
-            //     httpOnly: true,
-            // });
-            // res.cookie(ACCESS_TOKEN, token, {
-            //     sameSite: "strict",
-            //     secure: true,
-            // });
-            //For development, we remove secure because it's on http:
             res.cookie(REFRESH_TOKEN, refreshToken_1, {
+                sameSite: "strict",
+                secure: true,
                 httpOnly: true,
             });
-            res.cookie(ACCESS_TOKEN, token_1);
+            res.cookie(ACCESS_TOKEN, token_1, {
+                sameSite: "strict",
+                secure: true,
+            });
+            //For development, we remove secure because it's on http:
+            // res.cookie(REFRESH_TOKEN, refreshToken, {
+            //     httpOnly: true,
+            // });
+            // res.cookie(ACCESS_TOKEN, token);
             res.send({
                 token: token_1,
                 refreshToken: refreshToken_1,
@@ -239,22 +239,23 @@ var signUp = function (req, res, next) { return __awaiter(void 0, void 0, void 0
                 //Generate a token when user signs in, this token will be used so that they can access protected routes
                 //Chrome's default settings for cookie is samesite=Strict (to avoid CSRF attacks) and Secure
                 //We should make it samesite=strict
-                // res.cookie(REFRESH_TOKEN, refreshToken, {
-                //     sameSite: "strict",
-                //     secure: true,
-                //     httpOnly: true,
-                // });
-                // res.cookie(ACCESS_TOKEN, token, {
-                //     sameSite: "strict",
-                //     secure: true,
-                // });
-                //For development, we remove secure because it's on http:
                 res.cookie(REFRESH_TOKEN, refreshToken_2, {
+                    sameSite: "strict",
+                    secure: true,
                     httpOnly: true,
                 });
-                res.cookie(ACCESS_TOKEN, token);
+                res.cookie(ACCESS_TOKEN, token, {
+                    sameSite: "strict",
+                    secure: true,
+                });
+                //For development, we remove secure because it's on http:
+                // res.cookie(REFRESH_TOKEN, refreshToken, {
+                //     httpOnly: true,
+                // });
+                // res.cookie(ACCESS_TOKEN, token);
                 res.send({
                     token: token,
+                    refreshToken: refreshToken_2,
                 });
                 return [3 /*break*/, 7];
             case 6:
