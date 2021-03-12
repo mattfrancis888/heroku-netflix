@@ -1,0 +1,2 @@
+export const FORBIDDEN_STATUS = 403;
+export const INTERNAL_SERVER_ERROR_STATUS = 500;
