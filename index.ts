@@ -49,7 +49,7 @@ app.get("*", function (req, res) {
 //     res.sendFile("index.html", { root });
 // });
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`);
